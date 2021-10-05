@@ -8,15 +8,28 @@
 </head>
 <body>
     Large App (80Mb memory)
+
     <script>
         function onLoad(){            
             window._leak = new Float64Array(Math.pow(10, 7));
 
-            var url = new URL(location.href);
-            if(url.searchParams.has('log')) {
-                var message = { foo: 'bar' };
+            const url = new URL(location.href);
 
-                console.log('Hello from large app', message);
+            if(!url.searchParams.has('log')) return;
+
+            const objectType = url.searchParams.get('objectType');
+            const localObj =  { foo: 'bar' };
+
+            switch(objectType) {
+                case 'local':
+                    console.log('Hello from large app', localObj);
+                    break;
+                case 'anonymous':
+                    console.log('Hello from large app', { foo: 'bar' });
+                    break;
+                default:
+                    console.log('Hello from large app');
+                    break;
             }
         }
 

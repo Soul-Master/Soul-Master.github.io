@@ -1,37 +1,42 @@
 <!DOCTYPE html>
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
     <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgo=">
-    <title>Nested Page</title>
+    <title>Nested App</title>
 </head>
-
 <body>
     <div>
         <button id="addButton">Add</button>
         <button id="removeButton">Remove</button>
     </div>
     <div>
-        <label><input id="logOnLoadCheckbox" type="checkbox" checked /> Log to console on load app</label>
+        <label><input id="logOnLoadCheckbox" type="checkbox" checked /> Log to console on load app</label><br/>
+        <label><input name="objectType" type="radio" checked value="local" /> With local object</label><br />
+        <label><input name="objectType" type="radio" value="anonymous" /> With Anonymous object</label><br />
+        <label><input name="objectType" type="radio" value="" checked /> Without object</label><br />
     </div>
     <div id="container"></div>
 
     <script>
-        function onAdd(){
+        function onAdd() {
             const app = document.createElement('iframe');
             let url = './large-app.html';
-            if(logOnLoadCheckbox.checked) {
+
+            if (logOnLoadCheckbox.checked) {
                 url += '?log';
+                url += '&objectType=' + document.body.querySelector('input[name="objectType"]:checked').value;   
             }
 
             app.src = url;
 
             container.appendChild(app);
         }
-        function onRemove(){
+        function onRemove() {
             const apps = container.querySelector('iframe');
 
-            if(apps) {
+            if (apps) {
                 apps.remove();
             }
         }
