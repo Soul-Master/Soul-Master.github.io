@@ -9,9 +9,18 @@
 <body>
     Large App (80Mb memory)
     <script>
-        window.onload = function () {
+        function onLoad(){            
             window._leak = new Float64Array(Math.pow(10, 7));
-        };
+
+            var url = new URL(location.href);
+            if(url.searchParams.has('log')) {
+                var message = { foo: 'bar' };
+
+                console.log('Hello from large app', message);
+            }
+        }
+
+        window.addEventListener('load', onLoad);        
     </script>
 </body>
 </html>

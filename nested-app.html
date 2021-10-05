@@ -11,12 +11,21 @@
         <button id="addButton">Add</button>
         <button id="removeButton">Remove</button>
     </div>
+    <div>
+        <label><input id="logOnLoadCheckbox" type="checkbox" checked /> Log to console on load app</label>
+    </div>
     <div id="container"></div>
 
     <script>
         function onAdd(){
             const app = document.createElement('iframe');
-            app.src = './large-app.html';
+            let url = './large-app.html';
+            if(logOnLoadCheckbox.checked) {
+                url += '?log';
+            }
+
+            app.src = url;
+
             container.appendChild(app);
         }
         function onRemove(){
