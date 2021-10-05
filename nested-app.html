@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+    <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgo=">
+    <title>Nested Page</title>
+</head>
+
+<body>
+    <div>
+        <button id="addButton">Add</button>
+        <button id="removeButton">Remove</button>
+    </div>
+    <div id="container"></div>
+
+    <script>
+        function onAdd(){
+            const app = document.createElement('iframe');
+            app.src = './large-app.html';
+            container.appendChild(app);
+        }
+        function onRemove(){
+            const apps = container.querySelector('iframe');
+
+            if(apps) {
+                apps.remove();
+            }
+        }
+
+        addButton.addEventListener('click', onAdd);
+        removeButton.addEventListener('click', onRemove);
+    </script>
+</body>
+</html>

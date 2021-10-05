@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+    <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgo=">
+    <title>Large App</title>
+</head>
+<body>
+    Large App (80Mb memory)
+    <script>
+        window.onload = function () {
+            window._leak = new Float64Array(Math.pow(10, 7));
+        };
+    </script>
+</body>
+</html>
