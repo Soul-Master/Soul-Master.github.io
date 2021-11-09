@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+    <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgo=">
+    <title>Sample App</title>
+</head>
+<body>
+    <h4>App 4 (8Mb memory) <a href="javascript: void;" onclick="refreshApp()">Refresh</a></h4>
+    <p>
+        Go to: 
+        <a href="./app1.html">App 1</a>
+        <a href="./app2.html">App 2</a>
+        <a href="./app3.html">App 3</a>
+        <a href="./app5.html">App 5</a>
+    </p>
+
+    <script>
+        function refreshApp() {
+            location.reload(true);
+        }
+
+        function onLoad() {
+            // Simulate internal app data
+            window.appData = new Float64Array(Math.pow(10, 6));
+
+            console.log('Usage data', {
+                event: 'AppLoaded',
+                appName: 'App4'
+            });
+        }
+
+        window.addEventListener('load', onLoad);
+    </script>
+</body>
+</html>
